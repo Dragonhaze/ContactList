@@ -11,34 +11,6 @@ public class Contact {
     private int work;
     private String address;
 
-    public Contact(String name,int mobile) {
-        setName(name);
-        setSurname("");
-        setMobile(mobile);
-        setHome(0);
-        setWork(0);
-        setAddress("");
-    }
-
-    public Contact(String name, int mobile, int home, int work, String adress) {
-        setName(name);
-        setSurname("");
-        setMobile(mobile);
-        setHome(home);
-        setWork(work);
-        setAddress(adress);
-    }
-
-    public Contact(String name, String surname, int mobile, String address) {
-        setName(name);
-        setSurname(surname);
-        setMobile(mobile);
-        setHome(0);
-        setWork(0);
-        setAddress(address);
-    }
-
-
     public Contact(String name, String surname, int mobile, int home, int work, String address) {
         setName(name);
         setSurname(surname);

@@ -94,7 +94,7 @@ public class ContactApp {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("****************************");
+        System.out.println("**********Contacts**********");
         System.out.println("* 1 - Add contact          *");
         System.out.println("* 2 - Remove contact       *");
         System.out.println("* 3 - List contacts        *");
