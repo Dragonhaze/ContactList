@@ -1,5 +1,7 @@
 package duncan.model;
 
+import java.util.Objects;
+
 /**
  * Created by dunca on 24/05/2017.
  */
@@ -87,5 +89,24 @@ public class Contact {
                     "Home    : " + home + '\n' +
                     "Work    : " + work + '\n' +
                     "Address : " + address;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if( this == obj ) { return true; }
+
+        if ( obj == null ) { return false; }
+
+        if ( this.getClass() != obj.getClass() ) { return false; }
+
+        Contact f = (Contact) obj;
+
+        return Objects.equals(this.getName(), f.getName()) &&
+                Objects.equals(this.getSurname(), f.getSurname()) &&
+                Objects.equals(this.getMobile(),f.getMobile()) &&
+                Objects.equals(this.getHome(), f.getHome()) &&
+                Objects.equals(this.getWork(), f.getWork()) &&
+                Objects.equals(this.getAddress(), f.getAddress());
+
     }
 }

@@ -45,34 +45,34 @@ public class ContactApp {
         int mobile, home, work;
 
         do {
-            System.out.println("Código de vuelo: ");
+            System.out.println("Name");
             name = scanner.next().trim().replaceAll("\\s+", " ");
         } while (name.equals(""));
 
         scanner.nextLine();
 
         do {
-            System.out.println("Compañía Aérea: ");
+            System.out.println("Surname");
             surname = scanner.nextLine().trim().replaceAll("\\s+", " ");
         } while (surname.equals(""));
 
         do {
-            System.out.println("Velocidad de crucero: ");
+            System.out.println("Mobile");
             mobile = scanner.nextInt();
         } while (mobile < 0);
 
         do {
-            System.out.println("Distancia a pista: ");
+            System.out.println("Home");
             home = scanner.nextInt();
         } while (home < 0);
 
         do {
-            System.out.println("Distancia a pista: ");
+            System.out.println("Work");
             work = scanner.nextInt();
         } while (work < 0);
 
         do {
-            System.out.println("Código de vuelo: ");
+            System.out.println("Address:");
             address = scanner.next().trim().replaceAll("\\s+", " ");
         } while (address.equals(""));
 
