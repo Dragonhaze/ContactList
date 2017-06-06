@@ -35,13 +35,12 @@ public class ContactList {
         }
     }
     public void showContacts(){
-        int index = 0;
+
         System.out.println("Contacts:");
         System.out.println("=========");
         for (Contact contact:
                 contacts) {
-            index++;
-            System.out.println(index+" "+contact.toString());
+            System.out.println((contacts.indexOf(contact)+1)+". "+contact.toString());
         }
         System.out.println("=========");
     }

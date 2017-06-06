@@ -17,6 +17,7 @@ public class ContactApp {
     }
 
     public void start() {
+        run();
         int option;
 
         while ((option = showMenu()) != 0) {
@@ -28,7 +29,7 @@ public class ContactApp {
                     contactList.removeContact();
                     break;
                 case 3:
-                    ;
+                    contactList.showContacts();
                     break;
                 case 4:
                     ;
