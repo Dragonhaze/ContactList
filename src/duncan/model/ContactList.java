@@ -13,6 +13,10 @@ public class ContactList {
         this.contacts = new ArrayList<Contact>();
     }
 
+    public ContactList() {
+        this.contacts = new ArrayList<Contact>();
+    }
+
     public void addContact(Contact contact){
         if (contact != null){
             contacts.add(contact);
