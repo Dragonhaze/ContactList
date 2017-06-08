@@ -1,11 +1,12 @@
 package duncan.model;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * Created by dunca on 24/05/2017.
  */
-public class Contact {
+public class Contact implements Comparable<Contact> {
     private String name;
     private String surname;
     private int mobile;
@@ -82,8 +83,10 @@ public class Contact {
         this.address = address;
     }
 
+
     @Override
     public String toString() {
+
             return name + " " + surname + '\n' +
                     "Mobile  : " + mobile + '\n' +
                     "Home    : " + home + '\n' +
@@ -101,12 +104,19 @@ public class Contact {
 
         Contact f = (Contact) obj;
 
-        return Objects.equals(this.getName(), f.getName()) &&
-                Objects.equals(this.getSurname(), f.getSurname()) &&
-                Objects.equals(this.getMobile(),f.getMobile()) &&
-                Objects.equals(this.getHome(), f.getHome()) &&
-                Objects.equals(this.getWork(), f.getWork()) &&
-                Objects.equals(this.getAddress(), f.getAddress());
+        return Objects.equals(this.getName(), f.getName());
 
+    }
+
+
+    @Override
+    public int compareTo(Contact cont) {
+
+        int i = cont.getName().compareToIgnoreCase(this.getName());
+        if (i != 0){
+            return i;
+        }
+
+        return this.getSurname().compareToIgnoreCase(cont.getSurname());
     }
 }

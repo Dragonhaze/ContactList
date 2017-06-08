@@ -32,7 +32,8 @@ public class ContactApp {
                     contactList.showContacts();
                     break;
                 case 4:
-                    ;
+
+                    contactList.askForName();
                     break;
                 case 5:
                     ;
@@ -40,6 +41,9 @@ public class ContactApp {
             }
         }
     }
+
+
+
     private Contact askContactInfo() {
         Scanner scanner = new Scanner(System.in);
         String name, surname, address;
@@ -89,6 +93,15 @@ public class ContactApp {
                 2002304,
                 2343240,
                 "Calle calatrava nº1"));
+
+        contactList.addContact(new Contact(
+                "Max",
+                "Mad",
+                123,
+                321,
+                3234,
+                "Fury road"
+        ));
     }
 
     private int showMenu(){
@@ -103,10 +116,11 @@ public class ContactApp {
         System.out.println("* 5 - Save contacts        *");
         System.out.println("* 0 - Exit                 *");
         System.out.println("****************************");
-        System.out.println("Opción: ");
+        System.out.println("Option: ");
 
         option = scanner.nextInt();
 
         return option;
     }
+
 }

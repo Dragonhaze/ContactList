@@ -25,12 +25,17 @@ public class ContactList {
 
     public void removeContact(){
         if (!contacts.isEmpty()){
-            int input;
+            String input;
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Introduzca el numero del contacto que quieres eliminar");
+            System.out.println("Insert the first name of the contact you want to remove:");
+            input = scanner.next();
 
-            input = scanner.nextInt();
-            contacts.remove(input);
+            if (searchIndexOFContactByName(input) != -1){
+                contacts.remove(searchIndexOFContactByName(input));
+            }else {
+                System.out.println("A contact by this name has not been found");
+            }
+
 
         }
     }
@@ -41,7 +46,39 @@ public class ContactList {
         for (Contact contact:
                 contacts) {
             System.out.println((contacts.indexOf(contact)+1)+". "+contact.toString());
+            System.out.println("=========");
         }
-        System.out.println("=========");
+
+    }
+
+
+    public String searchContactByName(String name){
+        for (Contact contact: contacts){
+            if (contact.getName().equals(name)){
+               return contact.toString();
+            }
+        }
+        return null;
+    }
+
+    public int searchIndexOFContactByName(String name){
+        for (Contact contact: contacts){
+            if (contact.getName().equals(name)){
+                return contacts.indexOf(contact);
+            }
+        }
+        return -1;
+    }
+    public void askForName() {
+        String contactName;
+        System.out.println("Insert the first name of the contact you want to search for:");
+        Scanner input = new Scanner(System.in);
+        contactName = input.next();
+        if (searchContactByName(contactName) != null){
+            System.out.println(searchContactByName(contactName));
+        }else{
+            System.out.println("A contact by this name has not been found");
+        }
+
     }
 }
