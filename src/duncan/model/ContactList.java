@@ -25,12 +25,20 @@ public class ContactList {
 
     public void removeContact(){
         if (!contacts.isEmpty()){
-            int input;
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Introduzca el numero del contacto que quieres eliminar");
+            String contactName;
+            String contactSurname;
+            Scanner input = new Scanner(System.in);
+            System.out.println("Insert the first name of the contact you want to search for:");
+            contactName = input.next();
+            System.out.println("Insert the last name of the contact you want to search for:");
+            contactSurname= input.next();
 
-            input = scanner.nextInt();
-            contacts.remove(input);
+            if (searchIndexOFContactByName(contactName,contactSurname) != -1){
+                contacts.remove(searchIndexOFContactByName(contactName,contactSurname));
+            }else {
+                System.out.println("A contact by this name has not been found");
+            }
+
 
         }
     }
@@ -41,7 +49,42 @@ public class ContactList {
         for (Contact contact:
                 contacts) {
             System.out.println((contacts.indexOf(contact)+1)+". "+contact.toString());
+            System.out.println("=========");
         }
-        System.out.println("=========");
+
+    }
+
+
+    public String searchContactByName(String name,String surname){
+        for (Contact contact: contacts){
+            if (contact.getName().equals(name) && contact.getSurname().equals(surname)){
+               return contact.toString();
+            }
+        }
+        return null;
+    }
+
+    public int searchIndexOFContactByName(String name,String surname){
+        for (Contact contact: contacts){
+            if (contact.getName().equals(name)&& contact.getSurname().equals(surname)){
+                return contacts.indexOf(contact);
+            }
+        }
+        return -1;
+    }
+    public void askForName() {
+        String contactName;
+        String contactSurname;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Insert the first name of the contact you want to search for:");
+        contactName = input.next();
+        System.out.println("Insert the last name of the contact you want to search for:");
+        contactSurname= input.next();
+        if (searchContactByName(contactName,contactSurname) != null){
+            System.out.println(searchContactByName(contactName,contactSurname));
+        }else{
+            System.out.println("A contact by this name and surname has not been found");
+        }
+
     }
 }

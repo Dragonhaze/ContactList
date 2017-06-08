@@ -17,7 +17,8 @@ public class ContactApp {
     }
 
     public void start() {
-        run();
+        askLoadTestCases();
+
         int option;
 
         while ((option = showMenu()) != 0) {
@@ -32,14 +33,27 @@ public class ContactApp {
                     contactList.showContacts();
                     break;
                 case 4:
-                    ;
+                    contactList.askForName();
                     break;
                 case 5:
-                    ;
+
                     break;
             }
         }
     }
+
+    private void askLoadTestCases() {
+        String userInput;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Do you want to load 2 test contacts? ");
+        System.out.println("(If you do write yes if not write anything else)");
+        userInput = input.next();
+        if (userInput != "Yes" || userInput != "yes"){
+            run();
+        }
+    }
+
+
     private Contact askContactInfo() {
         Scanner scanner = new Scanner(System.in);
         String name, surname, address;
@@ -89,6 +103,15 @@ public class ContactApp {
                 2002304,
                 2343240,
                 "Calle calatrava nº1"));
+
+        contactList.addContact(new Contact(
+                "Max",
+                "Mad",
+                123,
+                321,
+                3234,
+                "Fury road"
+        ));
     }
 
     private int showMenu(){
@@ -103,10 +126,11 @@ public class ContactApp {
         System.out.println("* 5 - Save contacts        *");
         System.out.println("* 0 - Exit                 *");
         System.out.println("****************************");
-        System.out.println("Opción: ");
+        System.out.println("Option: ");
 
         option = scanner.nextInt();
 
         return option;
     }
+
 }
