@@ -58,14 +58,17 @@ public class ContactList {
      */
     public void showContacts(){
 
-        System.out.println("Contacts:");
-        System.out.println("=========");
-        for (Contact contact:
-                contacts) {
-            System.out.println((contacts.indexOf(contact)+1)+". "+contact.toString());
+        if (contacts.isEmpty()){
+            System.out.println("No hay ningun contacto");
+        }else {
+            System.out.println("Contacts:");
             System.out.println("=========");
+            for (Contact contact :
+                    contacts) {
+                System.out.println((contacts.indexOf(contact) + 1) + ". " + contact.toString());
+                System.out.println("=========");
+            }
         }
-
     }
 
     /**
