@@ -1,12 +1,13 @@
 package duncan.model;
 
-import java.util.Comparator;
+
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by dunca on 24/05/2017.
  */
-public class Contact implements Comparable<Contact> {
+public class Contact implements Comparable<Contact> , Serializable {
     private String name;
     private String surname;
     private int mobile;

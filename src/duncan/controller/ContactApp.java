@@ -36,7 +36,7 @@ public class ContactApp {
                     contactList.askForName();
                     break;
                 case 5:
-
+                    contactList.saveToFile();
                     break;
             }
         }
@@ -95,7 +95,7 @@ public class ContactApp {
 
     }
 
-    public void run(){
+    private void run(){
         contactList.addContact(new Contact(
                 "Manolo",
                 "Sanchez",

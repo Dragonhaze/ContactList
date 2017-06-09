@@ -3,6 +3,13 @@ package duncan.model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 /**
  * Created by dunca on 24/05/2017.
  */
@@ -20,6 +27,7 @@ public class ContactList {
     public void addContact(Contact contact){
         if (contact != null){
             contacts.add(contact);
+            saveToFile();
         }
     }
 
@@ -35,6 +43,7 @@ public class ContactList {
 
             if (searchIndexOFContactByName(contactName,contactSurname) != -1){
                 contacts.remove(searchIndexOFContactByName(contactName,contactSurname));
+                saveToFile();
             }else {
                 System.out.println("A contact by this name has not been found");
             }
@@ -86,5 +95,37 @@ public class ContactList {
             System.out.println("A contact by this name and surname has not been found");
         }
 
+    }
+
+    public void saveToFile(){
+        try {
+            FileOutputStream fos = new FileOutputStream("data/contacts.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (int i = 0; i < contacts.size() ; i++) {
+                oos.writeObject(contacts.get(i));
+            }
+            oos.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("No file found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromFile(){
+        try {
+            FileInputStream fis = new FileInputStream("data/contacts.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Contact result = (Contact) ois.readObject();
+            ois.close();
+            System.out.println(result.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println("No file found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
