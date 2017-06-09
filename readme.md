@@ -18,6 +18,9 @@
  
  3- **List contacts** : With this you will list in the console all the contacts you have added.
  
- 4- **Search contact** : whith this you can search for a contact, once selected the program will prompt you to type a name and surname If the program finds a contact with that name and surname it will display that contact.
+ 4- **Search contact** : With this you can search for a contact, once selected the program will prompt you to type a name and surname If the program finds a contact with that name and surname it will display that contact.
  
- 5- **Exit** : with this option you will exit the application, all of your contacts will be stored for the next time you open the app.
+ 5- **Edit contact** : With this you can edit an existing contact, after selecting it you will have to type the name and surname of the contact you want to edit after this you will be prompted to edit all of the data.
+ 
+ 6- **Exit** : with this option you will exit the application, all of your contacts will be stored for the next time you open the app.
+

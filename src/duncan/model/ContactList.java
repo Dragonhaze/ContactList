@@ -1,7 +1,10 @@
 package duncan.model;
 
+import duncan.controller.ContactApp;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -59,7 +62,7 @@ public class ContactList {
     public void showContacts(){
 
         if (contacts.isEmpty()){
-            System.out.println("No hay ningun contacto");
+            System.out.println("There are no contacts");
         }else {
             System.out.println("Contacts:");
             System.out.println("=========");
@@ -157,5 +160,92 @@ public class ContactList {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * This method is a user friendly way to create a new contact object and store it in the arraylist.
+     * @return it returns the fully formed contact.
+     */
+    public Contact askContactInfo() {
+        Scanner scanner = new Scanner(System.in);
+        String name, surname, address;
+        int mobile, home, work;
+
+        do {
+            System.out.println("Name");
+            name = scanner.next().trim().replaceAll("\\s+", " ");
+        } while (name.equals(""));
+
+        scanner.nextLine();
+
+        do {
+            System.out.println("Surname");
+            surname = scanner.nextLine().trim().replaceAll("\\s+", " ");
+        } while (surname.equals(""));
+        do {
+            System.out.println("Mobile");
+            try{
+                mobile = scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Number not valid");
+                return null;
+            }
+
+
+        } while (mobile < 0);
+
+        do {
+            System.out.println("Home");
+            try{
+                home = scanner.nextInt();
+            }catch (InputMismatchException f){
+                System.out.println("Number not valid");
+                return null;
+            }
+        } while (home < 0);
+
+        do {
+
+            System.out.println("Work");
+            try{
+                work = scanner.nextInt();}
+            catch (InputMismatchException n ) {
+                System.out.println("Number not valid");
+                return null;
+            }
+        } while (work < 0);
+
+        do {
+            System.out.println("Address:");
+            address = scanner.next().trim().replaceAll("\\s+", " ");
+        } while (address.equals(""));
+
+        return new Contact(name, surname, mobile, home, work, address);
+
+    }
+
+    /**
+     * This method
+     */
+    public void editContact(){
+        String contactName;
+        String contactSurname;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Insert the first name of the contact you want to search for:");
+        contactName = input.next();
+        System.out.println("Insert the last name of the contact you want to search for:");
+        contactSurname= input.next();
+        if (searchIndexOFContactByName(contactName,contactSurname) == -1){
+            System.out.println("Contact not found");
+        }
+
+
+            if (contacts.set(searchIndexOFContactByName(contactName,contactSurname),askContactInfo()) == null){
+                System.out.println("Not valid");
+                readFromFile();
+            }
+
+
+
     }
 }

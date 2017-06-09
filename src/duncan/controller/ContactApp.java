@@ -37,11 +37,11 @@ public class ContactApp {
         while ((option = showMenu()) != 0) {
             switch (option) {
                 case 1:
-                    Contact contact = askContactInfo();
+                    Contact contact = contactList.askContactInfo();
                     if (contact == null){
                         start();
                     }else {
-                        contactList.addContact(askContactInfo());
+                        contactList.addContact(contact);
                     }
 
                     break;
@@ -54,6 +54,10 @@ public class ContactApp {
                 case 4:
                     contactList.askForName();
                     break;
+                case 5:
+                    contactList.editContact();
+                    contactList.saveToFile();
+                    break;
                 case -1:
                     System.out.println("Introduce a valid option");
                     break;
@@ -61,67 +65,6 @@ public class ContactApp {
         }
     }
 
-    /**
-     * This method is a user friendly way to create a new contact object and store it in the arraylist.
-     * @return it returns the fully formed contact.
-     */
-    private Contact askContactInfo() {
-        Scanner scanner = new Scanner(System.in);
-        String name, surname, address;
-        int mobile, home, work;
-
-        do {
-            System.out.println("Name");
-            name = scanner.next().trim().replaceAll("\\s+", " ");
-        } while (name.equals(""));
-
-        scanner.nextLine();
-
-        do {
-            System.out.println("Surname");
-            surname = scanner.nextLine().trim().replaceAll("\\s+", " ");
-        } while (surname.equals(""));
-        do {
-            System.out.println("Mobile");
-            try{
-                mobile = scanner.nextInt();
-            }catch (InputMismatchException e){
-                System.out.println("Number not valid");
-                return null;
-            }
-
-
-        } while (mobile < 0);
-
-        do {
-            System.out.println("Home");
-               try{
-                   home = scanner.nextInt();
-               }catch (InputMismatchException f){
-                   System.out.println("Number not valid");
-                   return null;
-               }
-        } while (home < 0);
-
-        do {
-
-            System.out.println("Work");
-            try{
-                work = scanner.nextInt();}
-            catch (InputMismatchException n ) {
-                System.out.println("Number not valid");
-                return null;
-            }
-        } while (work < 0);
-
-        do {
-            System.out.println("Address:");
-            address = scanner.next().trim().replaceAll("\\s+", " ");
-        } while (address.equals(""));
-
-        return new Contact(name, surname, mobile, home, work, address);
-
-    }
 
     /**
      * This method shows a graphical representation of the menu and also records the user's input
@@ -136,6 +79,7 @@ public class ContactApp {
         System.out.println("* 2 - Remove contact       *");
         System.out.println("* 3 - List contacts        *");
         System.out.println("* 4 - Search contact       *");
+        System.out.println("* 5 - Edit contact         *");
         System.out.println("* 0 - Exit                 *");
         System.out.println("****************************");
         System.out.println("Option: ");
@@ -145,7 +89,7 @@ public class ContactApp {
         }catch (InputMismatchException e){
             return -1;
         }
-            if (option != 1 && option !=2 && option !=3 && option !=4 && option !=0){
+            if (option != 1 && option !=2 && option !=3 && option !=4 && option !=5 && option !=0){
                 return -1;
             }
 
