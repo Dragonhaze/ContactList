@@ -6,10 +6,13 @@ import duncan.model.ContactList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+
 /**
  * The controller for the application (where the magic happens)
  */
 public class ContactApp {
+
     /**
      * This is the arraylist that is used for the rest of the class
      */
@@ -45,8 +48,8 @@ public class ContactApp {
                 case 4:
                     contactList.askForName();
                     break;
-                case 5:
-                    contactList.saveToFile();
+                case -1:
+                    System.out.println("Introduce a valid option");
                     break;
             }
         }
@@ -72,20 +75,37 @@ public class ContactApp {
             System.out.println("Surname");
             surname = scanner.nextLine().trim().replaceAll("\\s+", " ");
         } while (surname.equals(""));
-
         do {
             System.out.println("Mobile");
-            mobile = scanner.nextInt();
+            try{
+                mobile = scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Number not valid");
+                mobile=0;
+            }
+
+
         } while (mobile < 0);
 
         do {
             System.out.println("Home");
-            home = scanner.nextInt();
+               try{
+                   home = scanner.nextInt();
+               }catch (InputMismatchException f){
+                   System.out.println("Number not valid");
+                   home=0;
+               }
         } while (home < 0);
 
         do {
+
             System.out.println("Work");
-            work = scanner.nextInt();
+            try{
+                work = scanner.nextInt();}
+            catch (InputMismatchException n ) {
+                System.out.println("Number not valid");
+                work=0;
+            }
         } while (work < 0);
 
         do {
@@ -110,17 +130,18 @@ public class ContactApp {
         System.out.println("* 2 - Remove contact       *");
         System.out.println("* 3 - List contacts        *");
         System.out.println("* 4 - Search contact       *");
-        System.out.println("* 5 - Save contacts        *");
         System.out.println("* 0 - Exit                 *");
         System.out.println("****************************");
         System.out.println("Option: ");
 
-        option = scanner.nextInt();
-            /*try {
-
-            }catch (InputMismatchException e){
-
-            }*/
+        try{
+            option = scanner.nextInt();
+        }catch (InputMismatchException e){
+            return -1;
+        }
+            if (option != 1 && option !=2 && option !=3 && option !=4 && option !=0){
+                return -1;
+            }
 
         return option;
     }
