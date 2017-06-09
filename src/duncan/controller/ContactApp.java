@@ -17,6 +17,7 @@ public class ContactApp {
     }
 
     public void start() {
+        contactList.readFromFile();
         askLoadTestCases();
 
         int option;

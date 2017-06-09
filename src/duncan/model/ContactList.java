@@ -16,10 +16,6 @@ import java.io.ObjectOutputStream;
 public class ContactList {
     private ArrayList<Contact> contacts;
 
-    public ContactList(ArrayList<Contact> contacts) {
-        this.contacts = new ArrayList<Contact>();
-    }
-
     public ContactList() {
         this.contacts = new ArrayList<Contact>();
     }
@@ -101,9 +97,9 @@ public class ContactList {
         try {
             FileOutputStream fos = new FileOutputStream("data/contacts.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            for (int i = 0; i < contacts.size() ; i++) {
-                oos.writeObject(contacts.get(i));
-            }
+
+            oos.writeObject(contacts);
+
             oos.close();
 
         } catch (FileNotFoundException e) {
@@ -117,9 +113,8 @@ public class ContactList {
         try {
             FileInputStream fis = new FileInputStream("data/contacts.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            Contact result = (Contact) ois.readObject();
+            contacts = (ArrayList<Contact>) ois.readObject();
             ois.close();
-            System.out.println(result.toString());
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
         } catch (IOException e) {
