@@ -1,25 +1,26 @@
 package duncan.model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 /**
- * Created by dunca on 24/05/2017.
+ * This is a class that stores an arraylist of contacts
  */
 public class ContactList {
     private ArrayList<Contact> contacts;
 
+    /**
+     * Sole constructor for this class, no more are needed
+     */
     public ContactList() {
         this.contacts = new ArrayList<Contact>();
     }
 
+    /**
+     * This method adds a contact to the contactList and then saves it to the file where the contacts are stored.
+     * @param contact contact that is added.
+     */
     public void addContact(Contact contact){
         if (contact != null){
             contacts.add(contact);
@@ -27,6 +28,10 @@ public class ContactList {
         }
     }
 
+    /**
+     * This method removes a contact from the arraylist if it's not empty, It asks for the name, surname and looks for the contact in the list
+     * if it's found it is deleted and the new state is saved.
+     */
     public void removeContact(){
         if (!contacts.isEmpty()){
             String contactName;
@@ -47,6 +52,10 @@ public class ContactList {
 
         }
     }
+
+    /**
+     * Lists all contacts in the arraylist
+     */
     public void showContacts(){
 
         System.out.println("Contacts:");
@@ -59,7 +68,12 @@ public class ContactList {
 
     }
 
-
+    /**
+     * Searches for the contact by Name and surname and reruns the contact, if found, as a string, if not it returns null.
+     * @param name name of the contact.
+     * @param surname surname of the contact.
+     * @return The toString of the contact if it is found if not it returns null.
+     */
     public String searchContactByName(String name,String surname){
         for (Contact contact: contacts){
             if (contact.getName().equals(name) && contact.getSurname().equals(surname)){
@@ -69,6 +83,12 @@ public class ContactList {
         return null;
     }
 
+    /**
+     * Does the same as the method above but it returns the index of the contact,if found, and a -1 if not.
+     * @param name name of the contact.
+     * @param surname surname of the contact.
+     * @return The indexOf the contact found or a -1 if not.
+     */
     public int searchIndexOFContactByName(String name,String surname){
         for (Contact contact: contacts){
             if (contact.getName().equals(name)&& contact.getSurname().equals(surname)){
@@ -77,6 +97,10 @@ public class ContactList {
         }
         return -1;
     }
+
+    /**
+     * Asks for the name of the user and searches for it using the searchContactByName method and prints the string that it returns.
+     */
     public void askForName() {
         String contactName;
         String contactSurname;
@@ -93,6 +117,9 @@ public class ContactList {
 
     }
 
+    /**
+     * Saves the current state of the arraylist in a file in the data directory
+     */
     public void saveToFile(){
         try {
             FileOutputStream fos = new FileOutputStream("data/contacts.ser");
@@ -109,14 +136,19 @@ public class ContactList {
         }
     }
 
+    /**
+     * Reads the contacts file from the data directory and overwrites the previous arraylist with the one extracted from the file.
+     */
     public void readFromFile(){
         try {
+            File dir = new File("data");
+            dir.mkdir();
             FileInputStream fis = new FileInputStream("data/contacts.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
             contacts = (ArrayList<Contact>) ois.readObject();
             ois.close();
         } catch (FileNotFoundException e) {
-            System.out.println("No file found");
+            System.out.println("No file found to load contacts from, it will de created automatically");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

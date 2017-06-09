@@ -3,22 +3,31 @@ package duncan.controller;
 import duncan.model.Contact;
 import duncan.model.ContactList;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by dunca on 06/06/2017.
+ * The controller for the application (where the magic happens)
  */
 public class ContactApp {
-
+    /**
+     * This is the arraylist that is used for the rest of the class
+     */
     private ContactList contactList;
 
+    /**
+     * The only constructor
+     */
     public ContactApp(){
         contactList = new ContactList();
     }
 
+    /**
+     * This is the method invoked at the start of the program and at the end of each cycle,
+     * it contains the switch that lets the user determine what option the y want to use and also reads the contacts from the file.
+     */
     public void start() {
         contactList.readFromFile();
-        askLoadTestCases();
 
         int option;
 
@@ -43,18 +52,10 @@ public class ContactApp {
         }
     }
 
-    private void askLoadTestCases() {
-        String userInput;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to load 2 test contacts? ");
-        System.out.println("(If you do write yes if not write anything else)");
-        userInput = input.next();
-        if (userInput != "Yes" || userInput != "yes"){
-            run();
-        }
-    }
-
-
+    /**
+     * This method is a user friendly way to create a new contact object and store it in the arraylist.
+     * @return it returns the fully formed contact.
+     */
     private Contact askContactInfo() {
         Scanner scanner = new Scanner(System.in);
         String name, surname, address;
@@ -96,25 +97,10 @@ public class ContactApp {
 
     }
 
-    private void run(){
-        contactList.addContact(new Contact(
-                "Manolo",
-                "Sanchez",
-                100000,
-                2002304,
-                2343240,
-                "Calle calatrava nº1"));
-
-        contactList.addContact(new Contact(
-                "Max",
-                "Mad",
-                123,
-                321,
-                3234,
-                "Fury road"
-        ));
-    }
-
+    /**
+     * This method shows a graphical representation of the menu and also records the user's input
+     * @return It returns the user's option
+     */
     private int showMenu(){
         Scanner scanner = new Scanner(System.in);
         int option;
@@ -130,6 +116,11 @@ public class ContactApp {
         System.out.println("Option: ");
 
         option = scanner.nextInt();
+            /*try {
+
+            }catch (InputMismatchException e){
+
+            }*/
 
         return option;
     }
