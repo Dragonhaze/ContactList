@@ -37,7 +37,13 @@ public class ContactApp {
         while ((option = showMenu()) != 0) {
             switch (option) {
                 case 1:
-                    contactList.addContact(askContactInfo());
+                    Contact contact = askContactInfo();
+                    if (contact == null){
+                        start();
+                    }else {
+                        contactList.addContact(askContactInfo());
+                    }
+
                     break;
                 case 2:
                     contactList.removeContact();
@@ -81,7 +87,7 @@ public class ContactApp {
                 mobile = scanner.nextInt();
             }catch (InputMismatchException e){
                 System.out.println("Number not valid");
-                mobile=0;
+                return null;
             }
 
 
@@ -93,7 +99,7 @@ public class ContactApp {
                    home = scanner.nextInt();
                }catch (InputMismatchException f){
                    System.out.println("Number not valid");
-                   home=0;
+                   return null;
                }
         } while (home < 0);
 
@@ -104,7 +110,7 @@ public class ContactApp {
                 work = scanner.nextInt();}
             catch (InputMismatchException n ) {
                 System.out.println("Number not valid");
-                work=0;
+                return null;
             }
         } while (work < 0);
 
