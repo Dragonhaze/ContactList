@@ -3,6 +3,7 @@ package duncan.controller;
 import duncan.model.Contact;
 import duncan.model.ContactList;
 
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -30,6 +31,9 @@ public class ContactApp {
      * it contains the switch that lets the user determine what option the y want to use and also reads the contacts from the file.
      */
     public void start() {
+        File dir = new File("data");
+        dir.mkdir();
+
         contactList.readFromFile();
 
         int option;

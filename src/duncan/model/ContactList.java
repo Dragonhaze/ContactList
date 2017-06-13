@@ -1,6 +1,5 @@
 package duncan.model;
 
-import duncan.controller.ContactApp;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -147,8 +146,7 @@ public class ContactList {
      */
     public void readFromFile(){
         try {
-            File dir = new File("data");
-            dir.mkdir();
+
             FileInputStream fis = new FileInputStream("data/contacts.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
             contacts = (ArrayList<Contact>) ois.readObject();
@@ -215,9 +213,11 @@ public class ContactList {
             }
         } while (work < 0);
 
+
         do {
             System.out.println("Address:");
-            address = scanner.next().trim().replaceAll("\\s+", " ");
+            scanner.nextLine();
+            address = scanner.nextLine().trim().replaceAll("\\s+", " ");
         } while (address.equals(""));
 
         return new Contact(name, surname, mobile, home, work, address);
@@ -239,13 +239,10 @@ public class ContactList {
             System.out.println("Contact not found");
         }
 
-
             if (contacts.set(searchIndexOFContactByName(contactName,contactSurname),askContactInfo()) == null){
                 System.out.println("Not valid");
                 readFromFile();
             }
-
-
 
     }
 }
