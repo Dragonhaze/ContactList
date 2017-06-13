@@ -3,6 +3,7 @@ package duncan.model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -225,7 +226,7 @@ public class ContactList {
     }
 
     /**
-     * This method
+     * This method edits an existing contact
      */
     public void editContact(){
         String contactName;
@@ -244,5 +245,10 @@ public class ContactList {
                 readFromFile();
             }
 
+    }
+    public void sortByName(){
+        Collections.sort(contacts,new Contact());
+
+        showContacts();
     }
 }

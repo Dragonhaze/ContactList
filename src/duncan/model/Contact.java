@@ -2,18 +2,25 @@ package duncan.model;
 
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * This is an object that stores a contact
  */
-public class Contact implements Comparable<Contact> , Serializable {
+public class Contact implements Comparator<Contact>, Serializable {
+
+    private static final long serialVersionUID = 6529685098267757690L;
+
     private String name;
     private String surname;
     private int mobile;
     private int home;
     private int work;
     private String address;
+
+    public Contact() {
+    }
 
     /**
      * This is the only constructor of the class with all of the parameters.
@@ -24,6 +31,8 @@ public class Contact implements Comparable<Contact> , Serializable {
      * @param work work phone number.
      * @param address contact's adress.
      */
+
+
     public Contact(String name, String surname, int mobile, int home, int work, String address) {
         setName(name);
         setSurname(surname);
@@ -175,14 +184,17 @@ public class Contact implements Comparable<Contact> , Serializable {
     }
 
 
-    @Override
-    public int compareTo(Contact cont) {
 
-        int i = cont.getName().compareToIgnoreCase(this.getName());
+
+    @Override
+    public int compare(Contact c1, Contact c2) {
+        int i;
+
+        i = c1.getName().compareToIgnoreCase(c2.getName());
         if (i != 0){
             return i;
         }
 
-        return this.getSurname().compareToIgnoreCase(cont.getSurname());
+        return compare(c1,c2);
     }
 }

@@ -62,6 +62,9 @@ public class ContactApp {
                     contactList.editContact();
                     contactList.saveToFile();
                     break;
+                case 6:
+                    contactList.sortByName();
+                    break;
                 case -1:
                     System.out.println("Introduce a valid option");
                     break;
@@ -84,6 +87,7 @@ public class ContactApp {
         System.out.println("* 3 - List contacts        *");
         System.out.println("* 4 - Search contact       *");
         System.out.println("* 5 - Edit contact         *");
+        System.out.println("* 6 - Sort alphabetically  *");
         System.out.println("* 0 - Exit                 *");
         System.out.println("****************************");
         System.out.println("Option: ");
@@ -93,7 +97,7 @@ public class ContactApp {
         }catch (InputMismatchException e){
             return -1;
         }
-            if (option != 1 && option !=2 && option !=3 && option !=4 && option !=5 && option !=0){
+            if (option != 1 && option !=2 && option !=3 && option !=4 && option !=5 && option !=6 && option !=0){
                 return -1;
             }
 
